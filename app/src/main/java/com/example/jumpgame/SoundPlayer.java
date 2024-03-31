@@ -1,4 +1,4 @@
-package com.example.ballcatch;
+package com.example.jumpgame;
 
 import android.content.Context;
 import android.media.AudioManager;

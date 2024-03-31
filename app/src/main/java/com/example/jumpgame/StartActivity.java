@@ -1,4 +1,4 @@
-package com.example.ballcatch;
+package com.example.jumpgame;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,11 +24,10 @@ public class StartActivity extends AppCompatActivity {
     }
 
     /**
-     * ゲームをスタートするメソッド
+     * プレイヤー選択画面へ移動する
      * @param view
      */
-    public void startGame(View view) {
-        // MainActivityへ移動
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    public void selectPlayer(View view){
+        startActivity(new Intent(getApplicationContext(), SelectActivity.class));
     }
 }

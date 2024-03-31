@@ -1,4 +1,4 @@
-package com.example.ballcatch;
+package com.example.jumpgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -52,6 +52,6 @@ public class ResultActivity extends AppCompatActivity {
      */
     public void tryAgain(View view) {
         //MainActivityに移動するメソッド
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), SelectActivity.class));
     }
 }

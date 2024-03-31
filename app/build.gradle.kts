@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ballcatch"
+    namespace = "com.example.jumpgame"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ballcatch"
-        minSdk = 34
+        applicationId = "com.example.jumpgame"
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -29,12 +29,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    flavorDimensions += listOf()
 }
 
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
