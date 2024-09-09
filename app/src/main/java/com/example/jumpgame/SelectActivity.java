@@ -1,11 +1,12 @@
 package com.example.jumpgame;
 
-import android.content.Context;
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.content.Intent;
+import android.content.Context;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +14,9 @@ public class SelectActivity extends AppCompatActivity {
     private String playerSelect;// 次のActivityに渡すplayerの値
     private ImageButton player01Button;
     private ImageButton player02Button;
+
     /**
-     * アクティビティ作成時のメソッド
+     * アクティビティ作成時メソッド．
      *
      * @param savedInstanceState If the activity is being re-initialized after
      *                           previously being shut down then this Bundle contains the data it most
@@ -32,7 +34,7 @@ public class SelectActivity extends AppCompatActivity {
     /**
      * ゲームスタート
      *
-     * @param view
+     * @param view このメソッドが呼ばれたビュー
      */
     public void startGame(View view) {
         if (playerSelect.equals("NotSelected")) {
@@ -51,8 +53,9 @@ public class SelectActivity extends AppCompatActivity {
     /**
      * playerを設定するメソッド
      *
-     * @param view
+     * @param view このメソッドが呼ばれたビュー
      */
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void setPlayer(View view) {
         if (view.getId() == R.id.player01_select) {
             playerSelect = "DoubleJumpPlayer";

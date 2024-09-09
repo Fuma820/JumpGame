@@ -1,23 +1,25 @@
 package com.example.jumpgame;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.Display;
+import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.Display;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.FrameLayout;
 
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * ゲーム画面を表すActivity
@@ -28,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView orangeBallImage;// 10点のボール
     private ImageView pinkBallImage;// 30点のボール
     private ImageView blackBallImage;// ゲームオーバーになるボール
-    private ImageView player01Image;// プレイヤー
+    private ImageView player01Image;
     private ImageView player02Image;
-    private ImageView block01Image;// ブロック
+    private ImageView block01Image;
     private HashMap<String, Drawable> player01List;
     private HashMap<String, Drawable> player02List;
 
-    private Handler handler = new Handler();// Handlerはスレッド間の通信をするためのクラス
+    private final Handler handler = new Handler();// Handlerはスレッド間の通信をするためのクラス
     private Timer timer = new Timer();// Timerはバックグラウンドスレッドでタスクをスケジュールするクラス
     private SoundPlayer soundPlayer;
 
@@ -46,23 +48,23 @@ public class MainActivity extends AppCompatActivity {
 
     private String nextHitDirection;
 
-    private int frameHeight;// フレームの高さ
-    private int screenWidth;// ゲーム画面の横幅
-    private int screenHeight;// ゲーム画面の縦幅
+    private int frameHeight;
+    private int screenWidth;
 
     private float gravity;
     private int score = 0;// 得点
 
     private boolean action_flg = false;// 画面がタッチされているか判定
-    private boolean start_flg = false;// ゲームがスタートしているか判定するメソッド
+    private boolean start_flg = false;
 
     /**
-     * Activity作成時のメソッド
+     * Activity作成時メソッド
      *
      * @param savedInstanceState If the activity is being re-initialized after
      *                           previously being shut down then this Bundle contains the data it most
      *                           recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      */
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,25 +74,24 @@ public class MainActivity extends AppCompatActivity {
         // Screen Size
         WindowManager wm = getWindowManager();
         Display display = wm.getDefaultDisplay();
-        Point point = new Point();// (0, 0)でpointオブジェクト生成
-        display.getSize(point);// Pointオブジェクトに画面の最大点を格納する
+        Point point = new Point();
+        display.getSize(point);
         screenWidth = point.x;
-        screenHeight = point.y;
         // プレイヤーの画像
         player01Image = findViewById(R.id.player01_standing);
         player01List = new HashMap<>();
-        Drawable drawable_standing01 = getResources().getDrawable(R.drawable.player01_standing);
-        Drawable drawable_jumping01 = getResources().getDrawable(R.drawable.player01_standing);
-        Drawable drawable_falling01 = getResources().getDrawable(R.drawable.player01_falling);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable_standing01 = getResources().getDrawable(R.drawable.player01_standing);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable_jumping01 = getResources().getDrawable(R.drawable.player01_standing);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable_falling01 = getResources().getDrawable(R.drawable.player01_falling);
         player01List.put("standing", drawable_standing01);
         player01List.put("jumping", drawable_jumping01);
         player01List.put("falling", drawable_falling01);
         //プレイヤーの画像
         player02Image = findViewById(R.id.player02_standing);
         player02List = new HashMap<>();
-        Drawable drawable_standing02 = getResources().getDrawable(R.drawable.player02_standing);
-        Drawable drawable_jumping02 = getResources().getDrawable(R.drawable.player02_standing);
-        Drawable drawable_falling02 = getResources().getDrawable(R.drawable.player02_standing);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable_standing02 = getResources().getDrawable(R.drawable.player02_standing);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable_jumping02 = getResources().getDrawable(R.drawable.player02_standing);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable_falling02 = getResources().getDrawable(R.drawable.player02_standing);
         player02List.put("standing", drawable_standing02);
         player02List.put("jumping", drawable_jumping02);
         player02List.put("falling", drawable_falling02);
@@ -107,15 +108,16 @@ public class MainActivity extends AppCompatActivity {
         orangeBallImage.setX(-screenWidth);
         pinkBallImage.setX(-screenWidth);
         block01Image.setX(-screenWidth);
-        player01Image.setX(-screenWidth);// 画像消せる？
+        player01Image.setX(-screenWidth);
         player02Image.setX(-screenWidth);
 
-        scoreLabel.setText("Score : 0");// 得点の初期表示
+        scoreLabel.setText("Score : 0");
     }
 
     /**
      * フレームが切り替わる時に情報を更新するメソッド
      */
+    @SuppressLint("SetTextI18n")
     public void update() {
         player.update(action_flg, screenWidth, frameHeight, gravity);
         orangeBall.update();
@@ -146,25 +148,24 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("SCORE", score);// 得点を次のActivityに渡す
             startActivity(intent);
         }
-        player.setImage(screenWidth, frameHeight);
+        player.setImage(frameHeight);
         score = player.getScore();
-        scoreLabel.setText("Score : " + score);// 得点を更新
+        scoreLabel.setText("Score : " + score);
     }
 
     /**
      * 画面がタッチされた時のメソッド
      *
      * @param event The touch screen event being processed.
-     * @return
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (start_flg == false) {// ゲームがスタートしていない場合
+        if (!start_flg) {
             start_flg = true;
             gravity = 3;
             FrameLayout frame = findViewById(R.id.frame);
-            frameHeight = frame.getHeight();// フレームの高さを取得
-            switch (getIntent().getStringExtra("PLAYER")) {
+            frameHeight = frame.getHeight();
+            switch (Objects.requireNonNull(getIntent().getStringExtra("PLAYER"))) {
                 case "DoubleJumpPlayer":
                     player01Image.setX(0);
                     player = new DoubleJumpPlayer(player01Image, player01List, 2, 60, 1);
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             }, 0, 20);
-        } else {// ゲームがスタートしている場合
+        } else {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 action_flg = true;
             } else if (event.getAction() == MotionEvent.ACTION_UP) {

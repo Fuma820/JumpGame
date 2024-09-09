@@ -8,6 +8,10 @@ public class BlackBall extends Object {
         this.respornX = screenWidth * 10;
     }
 
+    /**
+     * プレイヤーヒット時のアクションメソッド．
+     * @param soundPlayer SoundPlayerオブジェクト
+     */
     @Override
     public void hitAction(SoundPlayer soundPlayer) {
         soundPlayer.playHitSound();

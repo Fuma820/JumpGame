@@ -1,5 +1,12 @@
 package com.example.jumpgame;
 
+/**
+ * プレイヤー状態インターフェース．
+ */
 public interface PlayerState {
-    public void update();
+    /**
+     * プレイヤーの状態を更新するメソッド．
+     */
+    void update();
+
 }

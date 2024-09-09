@@ -1,12 +1,21 @@
 package com.example.jumpgame;
 
-public class Jumping implements PlayerState{
+/**
+ * ジャンプ状態クラス．
+ */
+public class Jumping implements PlayerState {
     Player player;
-    public Jumping(Player player){
-        this.player=player;
+
+    public Jumping(Player player) {
+        this.player = player;
     }
+
+    /**
+     * プレイヤーの状態更新メソッド．
+     */
     @Override
-    public void update(){
+    public void update() {
         player.getImage().setImageDrawable(player.getImageMap().get("jumping"));
     }
+
 }

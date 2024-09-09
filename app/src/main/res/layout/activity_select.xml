@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="プレイヤーを選択"
-        android:textSize="20dp" />
+        android:paddingStart="10dp"
+        android:text="@string/select"
+        android:textSize="20sp"
+        tools:ignore="RtlSymmetry" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,9 +29,11 @@
             android:layout_height="150dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/shape_outer_frame"
+            android:contentDescription="@string/player_image"
             android:onClick="setPlayer"
             android:scaleType="centerCrop"
-            android:src="@drawable/player01_standing" />
+            android:src="@drawable/player01_standing"
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
         <ImageButton
             android:id="@+id/player02_select"
@@ -38,9 +41,11 @@
             android:layout_height="150dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/shape_outer_frame"
+            android:contentDescription="@string/player_image"
             android:onClick="setPlayer"
             android:scaleType="centerCrop"
-            android:src="@drawable/player02_standing" />
+            android:src="@drawable/player02_standing"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <Button
@@ -48,6 +53,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:onClick="startGame"
-        android:text="スタート" />
+        android:text="@string/start" />
 
 </LinearLayout>

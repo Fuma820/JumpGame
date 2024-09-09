@@ -3,75 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/scoreLabel"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
         android:text=""
-        android:textSize="20dp"
-        android:paddingLeft="10dp"
-        android:gravity="center_vertical"/>
+        android:textSize="20sp"
+        tools:ignore="RtlSymmetry" />
 
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
+
         <TextView
             android:id="@+id/startLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="タップしてスタート"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:text="@string/start_text"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/player01_standing"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/player01_standing"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/player_image"
+            android:src="@drawable/player01_standing" />
 
         <ImageView
             android:id="@+id/player02_standing"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/player02_standing"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/player_image"
+            android:src="@drawable/player02_standing" />
 
         <ImageView
             android:id="@+id/orange"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/orange"/>
+            android:contentDescription="@string/ball_image"
+            android:src="@drawable/orange"
+            tools:ignore="ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/black"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/black"/>
+            android:contentDescription="@string/enemy_image"
+            android:src="@drawable/black"
+            tools:ignore="ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/pink"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/pink"/>
+            android:contentDescription="@string/ball_image"
+            android:src="@drawable/pink"
+            tools:ignore="ImageContrastCheck" />
+
         <ImageView
             android:id="@+id/block01"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/block01"/>
+            android:contentDescription="@string/enemy_image"
+            android:src="@drawable/block01"
+            tools:ignore="ImageContrastCheck" />
 
     </FrameLayout>
+
     <FrameLayout
         android:id="@+id/frame2"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:background="#000">
-    </FrameLayout>
+        android:background="#000" />
 
 </LinearLayout>

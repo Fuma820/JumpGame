@@ -1,5 +1,12 @@
 package com.example.jumpgame;
 
+/**
+ * スキルインターフェース．
+ */
 public interface Skill {
-    public void action();
+    /**
+     * スキル使用時のアクションメソッド．
+     */
+    void action();
+
 }
